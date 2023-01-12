@@ -36,9 +36,9 @@ public class BlockBridgeAE extends AEBaseTileBlock {
         return true;
     }
 
-    @Nullable
-    @Override
-    public TileEntity createNewTileEntity(@Nonnull World world, int meta) {
-        return new TileEntityBridgeAE();
-    }
+//    @Nullable
+//    @Override
+//    public TileEntity createNewTileEntity(@Nonnull World world, int meta) {
+//        return new TileEntityBridgeAE();
+//    }
 }

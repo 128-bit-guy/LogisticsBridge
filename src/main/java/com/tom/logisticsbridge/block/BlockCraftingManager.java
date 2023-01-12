@@ -35,9 +35,9 @@ public class BlockCraftingManager extends AEBaseTileBlock {
         return true;
     }
 
-    @Nullable
-    @Override
-    public TileEntity createNewTileEntity(@Nonnull World world, int meta) {
-        return new TileEntityCraftingManager();
-    }
+//    @Nullable
+//    @Override
+//    public TileEntity createNewTileEntity(@Nonnull World world, int meta) {
+//        return new TileEntityCraftingManager();
+//    }
 }

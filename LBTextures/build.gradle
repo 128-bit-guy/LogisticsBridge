@@ -84,6 +84,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+    duplicatesStrategy = 'exclude'
 }
 
 jar.finalizedBy('reobfJar')

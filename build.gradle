@@ -10,7 +10,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_ver}"
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.+', changing: true
     }
 }
 
@@ -29,6 +29,13 @@ minecraft {
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+            jvmArgs '-Dfml.coreMods.load=logisticspipes.asm.LogisticsPipesCoreLoader'
+
+            mods {
+                logisticsbridge {
+                    source sourceSets.main
+                }
+            }
         }
 
         server {
@@ -36,6 +43,13 @@ minecraft {
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+            jvmArgs '-Dfml.coreMods.load=logisticspipes.asm.LogisticsPipesCoreLoader'
+
+            mods {
+                logisticsbridge {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
@@ -73,13 +87,13 @@ dependencies {
     compileOnly ":logisticspipes-${lp_ver}-api"
     compileOnly ":NotEnoughItems-${mc_ver}-${nei_ver}-deobf"
     implementation ":logisticspipes-${lp_ver}-deobf"
-    api fg.deobf (":MCMultiPart-${mcmp_ver}")
-    api fg.deobf (":ThermalDynamics-${mc_ver}-${td_ver}-universal")
-    api fg.deobf (":refinedstorage-${rs_ver}")
-    api fg.deobf (":appliedenergistics2-${ae_ver}")
+    api fg.deobf ("org:MCMultiPart:${mcmp_ver}")
+    api fg.deobf ("org:ThermalDynamics:${mc_ver}-${td_ver}-universal")
+    api fg.deobf ("org:refinedstorage:${rs_ver}")
+    api fg.deobf ("org:appliedenergistics2:${ae_ver}")
     //
-    runtimeOnly ":refinedstorage-${rs_ver}"
-    runtimeOnly ":MCMultiPart-${mcmp_ver}"
+//    runtimeOnly ":refinedstorage-${rs_ver}"
+//    runtimeOnly ":MCMultiPart-${mcmp_ver}"
     runtimeOnly ":ThermalExpansion-${mc_ver}-${te_ver}-universal"
     runtimeOnly ":ThermalFoundation-${mc_ver}-${tf_ver}-universal"
     runtimeOnly ":CoFHCore-${mc_ver}-${cofhc_ver}-deobf"
@@ -109,6 +123,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+    duplicatesStrategy = 'exclude'
 }
  
 jar {
